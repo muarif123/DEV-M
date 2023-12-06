@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>ToDoList-local</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+
+    .main {
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background-color: steelblue;
+    }
+
+    .output {
+      height: max-content;
+      width: 35%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .task {
+      height: 40px;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0px;
+      background-color: white;
+      margin-top: 20px;
+
+
+    }
+
+    .comp {
+      text-decoration: line-through;
+
+    }
+
+    .input {
+      height: 40px;
+      width: 35%;
+
+    }
+
+    input {
+      height: 40px;
+      width: 70%;
+      padding-left: 15px;
+
+    }
+
+    .output {
+      margin-top: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main">
+    <h1>Todo List</h1>
+    <div class="input">
+      <input type="text" id="data"><span><i class="fa-solid fa-square-plus ader"></i></span>
+      <select name="" id="op">
+        <option value="All">All</option>
+        <option value="Completed">Completed</option>
+        <option value="Incompleted">Incompleted</option>
+      </select>
+
+    </div>
+    <div class="output">
+
+    </div>
+
+  </div>
+
+  <script>
+    let data = document.querySelector('#data')
+    let ader = document.querySelector('.ader')
+    let op = document.querySelector('#op')
+    let output = document.querySelector('.output')
+    let kaam = []
+    let kop
+    let tasks
+    document.addEventListener('click', function (ele) {
+      if (ele.target.classList.contains('fa-check')) {
+        kop = ele.target.closest('.task')
+
+        console.log(kop);
+
+
+        if (kop) {
+          kop.classList.add('comp')
+
+
+        }
+      }
+    })
+
+    document.addEventListener('click', function (e) {
+      if (e.target.classList.contains('fa-xmark')) {
+        let remover = e.target.closest('.task')
+        if (remover) {
+          remover.remove()
+        }
+      }
+    })
+    ader.addEventListener('click', function () {
+
+      if (data.value == '') {
+        alert('Enter task')
+      }
+      else {
+
+        output.innerHTML = ''
+        let work = { tsk: data.value }
+        kaam.push(work)
+        kaam.map((e) => {
+          output.innerHTML += ` <div class="task">
+                <p>${e.tsk}</p> <span><i class="fa-solid fa-check cmp"></i></span> <span><i class="fa-solid fa-xmark"></i></span>
+            </div>`
+
+          tasks = document.querySelectorAll(".task")
+
+          console.log(tasks, "tasksss");
+        })
+
+
+      }
+
+      data.value = ''
+      localStorage.setItem('detail', JSON.stringify(kaam))
+
+
+    })
+
+    op.addEventListener('change', function () {
+      tasks.forEach((ele) => {
+        if (op.value === 'Completed' && ele.classList.contains('comp')) {
+          ele.style.display = 'flex'
+        }
+        else if (op.value === 'Incompleted' && !ele.classList.contains('comp')) {
+          ele.style.display = 'flex'
+        }
+        else if (op.value === 'All') {
+          ele.style.display = 'flex'
+        }
+        else {
+          ele.style.display = 'none'
+        }
+      })
+    })
+    //So, it's not ele itself that represents completed or incomplete tasks but rather the combination of op.value and the presence of the "comp" class in the ele element's class list that determines whether a task is considered completed, incompleted, or displayed when "All" is selected.
+
+
+  </script>
+
+</body>
+
+</html>

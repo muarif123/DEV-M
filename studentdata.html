@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>StudentData</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        .main{
+            height: 100vh;
+            width: 100%;
+            padding: 1px;
+
+        }
+        .form{
+            height: 400px;
+            width: 70%;
+            margin: auto;
+            margin-top: 50px;
+            padding: 1px;
+        }
+        input{
+            height: 45px;
+            width: 30%;
+            padding-left: 15px;
+            /* margin-left: 15px; */
+        }
+        textarea{
+            width: 91%;
+            /* margin-left: 50px; */
+            margin-top: 30px;
+            padding-left: 15px;
+        }
+        button{
+            height: 40px;
+            width: 167px;
+            background-color: black;
+            border-radius: 10px;
+            color: white;
+            margin-top: 40px;
+            transition: .3s;
+        }
+        button:hover{
+            background-color: white;
+            color: black;
+        }
+        .container{
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .stdata{
+            height: 250px;
+            width: 250px;
+            border-radius: 6px;
+            border: 1px solid goldenrod;
+            padding: 10px 10px;
+            overflow: auto;
+
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="form">
+            <input type="text" placeholder="Your Name" id="name">
+            <input type="text" placeholder="Subject" id="sub">
+            <input type="number" placeholder="Age" id="age">
+            <textarea name="" id="mesage" cols="30" rows="10" placeholder="Your Message"></textarea>
+            <button class="btn">Submit</button>
+            
+        </div>
+        <div class="container"></div>
+    </div>
+
+
+    <script>
+        let container=document.querySelector('.container')
+        let name=document.querySelector('#name')
+        let sub=document.querySelector('#sub')
+        let age=document.querySelector('#age')
+        let mesage=document.querySelector('#mesage')
+        let btn=document.querySelector('.btn')
+        let studentdata=[]
+        document.addEventListener('click',function(e){
+            if(e.target.classList.contains('fa-xmark')){
+                let remove=e.target.closest('.stdata')
+                if(remove){
+                    remove.remove()
+                    
+                }
+            }
+
+        })
+        btn.addEventListener('click',function(){
+            container.innerHTML=''
+            let info={nme:name.value,sb:sub.value,ag:age.value,msg:mesage.value}
+            if(name.value==''|| sub.value==''||age.value==''||mesage.value==''){
+                alert('Fill all the fields')
+            }
+            else{
+            studentdata.push(info)
+            studentdata.map((e)=>{
+                container.innerHTML += `<div class='stdata'><p>Name:${e.nme}</p>
+                    <p>Subject:${e.sb}</p>
+                    <p>Age:${e.ag}</p>
+                    <p>Message:${e.msg}</p>
+                    <i class="fa-solid fa-xmark bnd"></i>
+                    </div>`
+
+            })
+
+            }
+           
+            
+            let stdata=document.querySelector('.stdata')
+            let clos=stdata.querySelector('.bnd')
+            
+            clos.style.marginLeft='80%'
+            clos.style.marginTop='-10%'
+
+            name.value=''
+            sub.value=''
+            age.value=''
+            mesage.value=''
+            localStorage.setItem('sdata',JSON.stringify(studentdata))
+
+            //if we insert object:info it will replace the previous one but if we add the array in which we push the object it will add into it continuously
+
+
+        })
+
+        
+    </script>
+    
+</body>
+</html>
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Data</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .form {
+            width: max-content;
+            margin: auto;
+        }
+
+        input {
+            width: 250px;
+            height: 30px;
+            margin: 10px;
+            padding: 5px;
+            font-size: 15px;
+        }
+
+        textarea {
+            width: 830px;
+            height: 120px;
+            margin: 10px;
+            display: block;
+            padding: 5px;
+            font-size: 15px;
+        }
+
+        #submit {
+            padding: 10px 20px;
+            background-color: darkorchid;
+            color: white;
+            margin: 10px 45%;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+        }
+
+        .container {
+            width: 90%;
+            height: max-content;
+            display: flex;
+            flex-wrap: wrap;
+            margin: auto;
+        }
+
+        .record {
+            width: 200px;
+            height: 200px;
+            margin: 10px 20px;
+            padding: 10px;
+            border-radius: 5px;
+            /* overflow-y: scroll; */
+            border: 1px solid darkgoldenrod;
+            position: relative;
+        }
+
+        .record p {
+            font-size: 15px;
+            line-height: 25px;
+        }
+
+        .record p span:nth-child(1) {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .close {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: darkgoldenrod;
+            color: white;
+            font-size: 15px;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <div class="form">
+        <input type="text" id="name" placeholder="Your Name">
+        <input type="text" id="subject" placeholder="Subject">
+        <input type="number" id="age" placeholder="Age">
+        <textarea name="" id="message" cols="30" rows="10" placeholder="Your Message"></textarea>
+        <button id="submit">Submit</button>
+    </div>
+
+    <div class="container"></div>
+    <div class="container1"></div>
+
+
+    <script>
+
+        const container = document.querySelector(".container");
+        let input_name = document.getElementById("name")
+        let input_subject = document.getElementById("subject")
+        let input_age = document.getElementById("age")
+        let input_message = document.getElementById("message")
+        let submitBtn = document.getElementById("submit");
+        let count = 0
+
+        container.addEventListener("click", removerecord)
+
+        document.addEventListener("DOMContentLoaded", init);
+
+        let nameValue, subjectValue, ageValue, messageValue;
+
+        submitBtn.addEventListener("click", function () {
+            if (input_name.value == "" || input_age.value == "" || input_subject.value == "" || input_message.value == "") {
+                alert("All Fields are required");
+            }
+            else {
+                nameValue = input_name.value
+                subjectValue = input_subject.value
+                ageValue = input_age.value
+                messageValue = input_message.value
+
+                let record = document.createElement("div");
+                record.classList.add("record");
+                record.innerHTML = ` <p><span>Name:</span> <span>${nameValue}</span></p><p><span>Subject:</span> <span>${subjectValue}</span></p><p><span>Age:</span> <span>${ageValue}</span></p><p><span>Message:</span> <span>${messageValue}</span></p><button class="close">X</button>`
+                count++
+                if (count > 10) {
+                    container.nextElementSibling.appendChild(record);
+                }
+                else {
+                    container.appendChild(record);
+                }
+
+
+                let obj = {
+                    name: nameValue,
+                    subject: subjectValue,
+                    age: ageValue,
+                    message: messageValue
+                }
+                let get = getdata();
+                get.push(obj);
+                console.log(get.length);
+                localStorage.setItem("student", JSON.stringify(get));
+
+
+                // input_name.value = "" 
+                // input_age.value = "" 
+                // input_subject.value = "" 
+                // input_message.value = "" 
+            }
+        })
+
+        function removerecord(e) {
+            if (e.target.innerHTML == "X") {
+                // console.log(e.target.parentElement.firstElementChild.firstElementChild.nextElementSibling.textContent);
+                removeFromLS(e.target.parentElement.firstElementChild.firstElementChild.nextElementSibling.textContent);
+                e.target.parentElement.remove();
+            }
+        }
+
+        function removeFromLS(item) {
+            let student = JSON.parse(localStorage.getItem('student'));
+            student.forEach(function (e, index) {
+                if (e.name === item) {
+                    student.splice(index, 1)
+                }
+            })
+            localStorage.setItem('student', JSON.stringify(student));
+        }
+
+        function getdata() {
+            if (localStorage.getItem('student') == null) {
+                localStorage.setItem('student', '[]');
+                return JSON.parse(localStorage.getItem('student'));
+            }
+            else {
+                return JSON.parse(localStorage.getItem('student'));
+            }
+        }
+
+        function init() {
+            let student = getdata();
+            student.forEach(function (data) {
+                let record = document.createElement("div");
+                record.classList.add("record");
+                record.innerHTML = ` <p><span>Name:</span> <span>${data.name}</span></p><p><span>Subject:</span> <span>${data.subject}</span></p><p><span>Age:</span> <span>${data.age}</span></p><p><span>Message:</span> <span>${data.message}</span></p><button class="close">X</button>`
+                container.appendChild(record);
+            })
+        }
+
+
+
+
+    </script>
+
+</body>
+
+</html> -->

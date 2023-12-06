@@ -1,0 +1,389 @@
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+            integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <title>login</title>
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+            }
+
+            .main {
+                height: 100vh;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            .con {
+                position: relative;
+                height: 400px;
+                width: 300px;
+
+            }
+
+            .form {
+                position: absolute;
+                height: 400px;
+                width: 300px;
+                border: 5px solid black;
+                border-radius: 7px;
+
+            }
+
+            .user {
+                position: absolute;
+                height: 400px;
+                width: 300px;
+                border: 5px solid black;
+                border-radius: 7px;
+                visibility: hidden;
+
+
+            }
+
+            .username,
+            .id,
+            .password,
+            .number,
+            .username2,
+            .password2 {
+                height: max-content;
+                width: 90%;
+                margin: auto;
+                border: 1px solid black;
+                padding: 1px;
+            }
+
+            input {
+                height: 40px;
+                width: 100%;
+                margin-top: 10px;
+                padding-left: 15px;
+                /* margin-left: 15px; */
+
+
+            }
+
+            button {
+                height: 45px;
+                width: 167px;
+                border-radius: 25px;
+                background-color: black;
+                color: white;
+                transition: .3s;
+                margin-top: 30px;
+                margin-left: 10px;
+            }
+
+            button:hover {
+                background-color: white;
+                color: black;
+            }
+
+            .account {
+                position: absolute;
+                height: 400px;
+                width: 300px;
+                border: 5px solid black;
+                border-radius: 7px;
+                visibility: hidden;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            .pic {
+                height: 70px;
+                width: 70px;
+                border-radius: 50%;
+
+
+            }
+
+            .pc {
+                height: 100%;
+                width: 100%;
+                border-radius: 50%;
+
+            }
+
+            .admininfo {
+                height: max-content;
+                width: 800px;
+
+                border-radius: 7px;
+                background-color: gray;
+                display: flex;
+                justify-content: space-around;
+                padding: 30px 0px
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="main">
+            <h1>Registration</h1>
+            <div class="con">
+                <div class="form">
+                    <div class="username">
+                        Enter Username
+                        <input type="text" id="uname">
+
+                    </div>
+                    <div class="id">
+                        Enter Email-Id
+                        <input type="email" id="uemail">
+
+                    </div>
+                    <div class="password">
+                        Enter Password
+                        <input type="password" id="upassword">
+
+                    </div>
+                    <div class="number">
+                        Enter Phone-number
+                        <input type="number" id="unumber">
+
+                    </div>
+
+                    <button class="reg">
+                        Register
+                    </button>
+
+
+
+
+                </div>
+                <div class="user">
+                    <div class="username2">
+                        Enter Username
+                        <input type="text" id="uname2">
+
+                    </div>
+                    <div class="password2">
+                        Enter Password
+                        <input type="password" id="upassword2">
+                    </div>
+                    <button class="log">
+                        Login
+                    </button>
+
+                </div>
+                <div class="account">
+
+
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <script>
+            let form = document.querySelector('.form')
+            let user = document.querySelector('.user')
+            let uname = document.querySelector('#uname')
+            let uemail = document.querySelector('#uemail')
+            let upassword = document.querySelector('#upassword')
+            let unumber = document.querySelector('#unumber')
+            let uname2 = document.querySelector('#uname2')
+            let upassword2 = document.querySelector('#upassword2')
+            let reg = document.querySelector('.reg')
+            let log = document.querySelector('.log')
+            // let lout=document.querySelector('.lout')
+            let con=document.querySelector('.con')
+            let info = []
+            let info2 = []
+            let admin = 'admin123'
+            let adminpassword = 'admin321'
+            let account = document.querySelector('.account')
+            reg.addEventListener('click', function () {
+                if (uname.value == '' || uemail.value == '' || upassword.value == '' || unumber.value == '') {
+                    alert('Enter All the Required fields')
+                }
+                else if (uemail.value.indexOf('@') === -1 || uemail.value.indexOf('.com') === -1) {
+                    alert('Please include @ and .com in your email')
+                }
+                else if (upassword.value.length > 26) {
+                    alert('Password too long')
+                }
+                else if (upassword.value.length < 8) {
+                    alert('Password too short')
+                }
+                else if (unumber.value.length < 11 || unumber.value.length < 8) {
+                    alert('Please enter Valid Phone number')
+                }
+                else {
+                    form.style.visibility = 'hidden'
+                    alert('Your Account Has been Created')
+                    user.style.visibility = 'visible'
+                    let obj = { nm: uname.value, uml: uemail.value, upas: upassword.value, unum: unumber.value }
+                    info.push(obj)
+                    info.map((e) => {
+                        console.log(`Name:${e.nm},Email:${e.uml},Password:${e.upas},Number:${e.unum}`);
+                    })
+                    localStorage.setItem('userinfo', JSON.stringify(info))
+
+
+
+                }
+
+            })
+            log.addEventListener('click', function () {
+
+            
+                if (uname2.value === admin && upassword2.value === adminpassword) {
+
+                    alert('Admin has Login')
+                    //hardcoded value so strict comparison
+
+                    user.style.visibility = 'hidden'
+
+                    let div = document.createElement('div')
+                    div.classList.add('admininfo')
+                    let ed = document.createElement('button')
+                    ed.innerHTML = 'Edit'
+                    let i = document.createElement('i')
+                    i.classList.add('fas', 'fa-xmark')
+                    let adname = document.createElement('div')
+                    adname.innerHTML = uname2.value
+                    let adpass = document.createElement('div')
+                    adpass.innerHTML = upassword2.value
+                    div.append(ed)
+                    div.append(i)
+                    div.append(adname)
+                    div.append(adpass)
+                    con.append(div)
+                    localStorage.setItem('adminname',adname.textContent)
+                    localStorage.setItem('adminpassw',adpass.textContent)
+                
+
+            //         ed.addEventListener('click', function () {
+            //     if (ed.innerHTML === 'Edit') {
+            //         adname.contentEditable = true;
+            //         adpass.contentEditable = true;
+            //         ed.innerHTML = 'Save';
+            //     } else if (ed.innerHTML === 'Save') {
+            //         // Save the edited content here
+            //         let updatedAdminName = adname.textContent;
+            //         let updatedAdminPass = adpass.textContent;
+    
+            //         // Save the updated values to your desired location (e.g., localStorage)
+            //         localStorage.setItem('adminName', updatedAdminName);
+            //         localStorage.setItem('adminPass', updatedAdminPass);
+    
+            //         // Make the fields non-editable again
+            //         adname.contentEditable = false;
+            //         adpass.contentEditable = false;
+            //         ed.innerHTML = 'Edit';
+            //     }
+            // })
+        ed.addEventListener('click',function(){
+            if(ed.innerHTML=='Edit'){
+                adname.contentEditable=true
+                adpass.contentEditable=true
+                ed.innerHTML='Save'
+            }
+           else if(ed.innerHTML=='Save'){
+            let updatedAdminName=adname.textContent
+            let updatedAdminPass=adpass.textContent
+            localStorage.setItem('updatename',updatedAdminName)
+            localStorage.setItem('updateadminpw',updatedAdminPass)
+            adname.contentEditable=false
+            adpass.contentEditable=false
+            ed.innerHTML='Edit'
+           }
+
+        })
+    
+
+
+                }
+                else{
+                    if (uname2.value !== uname.value) {
+                    alert('Incorrect Username')
+                }
+                else if (upassword2.value !== upassword.value) {
+                    alert('Incorrect Password')
+                }
+                else if (uname2.value == '' || upassword2.value == '') {
+                    alert('Enter the required Fields')
+
+                }
+                else {
+                    alert('You are Login')
+                    let obj2 = { nm2: uname2.value, upas2: upassword2.value }
+                    info2.push(obj2)
+                    info2.map((ele) => {
+                        console.log(`Name:${ele.nm2},Email:${uemail.value}`);
+
+                        user.style.visibility = 'hidden'
+                        account.style.visibility = 'visible'
+                        account.innerHTML = `<h1>ID</h1>
+                    <div class="pic">
+                        <img class="pc" src="muarif (1).jpg" alt="">
+                    </div>
+                    
+                    <div class="person">${ele.nm2}</div>
+                    <div class="nme">
+
+                        ${uemail.value}
+
+                    </div>
+                    <div class="details">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus ut 
+                    </div>
+                    <button class="loger">
+                        Log Out
+                    </button>`
+
+
+
+                    })
+                    let lout = document.querySelector('.loger')
+                    lout.addEventListener('click', function () {
+                        user.style.visibility = 'visible'
+                        account.style.visibility = 'hidden'
+                        uname2.value = ''
+                        upassword2.value = ''
+
+                    })
+
+                    localStorage.setItem('userprofile', JSON.stringify(info2))
+
+
+                }
+
+                }
+            
+
+
+
+            
+            })
+
+
+
+        </script>
+
+    </body>
+
+    </html>

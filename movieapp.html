@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie-App</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        .main {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* justify-content: space-between; */
+            align-items: center;
+            background-color: rgb(42, 42, 52);
+        }
+
+        .movie {
+            width: 300px;
+            font-size: 18px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .keys {
+            height: max-content;
+            width: 250px;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+
+        }
+
+        .opt {
+            height: max-content;
+            width: 30%;
+            color: white;
+            font-size: 15px;
+
+        }
+
+        .slot {
+            height: 30px;
+            width: 30px;
+            border-top-right-radius: 25px;
+            border-top-left-radius: 25px;
+            border: 1px solid white;
+            margin-top: 5px;
+            /* background-color: red; */
+
+        }
+
+        .set {
+            height: 30px;
+            width: 30px;
+            border-top-right-radius: 25px;
+            border-top-left-radius: 25px;
+            border: 1px solid white;
+            margin-top: 5px;
+
+        }
+
+        .screen {
+            clip-path: polygon(0 0, 100% 0, 88% 45%, 9% 45%);
+            background-color: white;
+            height: 200px;
+            width: 450px;
+            margin-top: 50px;
+            box-shadow: 5px 5px 5px white;
+
+
+        }
+
+        .hall {
+            height: max-content;
+            width: 30%;
+            display: flex;
+            justify-content: space-between;
+            /* border: 1px solid white; */
+        }
+
+        .audience {
+            height: 100%;
+            width: 20%;
+            display: flex;
+
+            justify-content: space-between;
+        }
+
+        .st {
+            width: 50%;
+
+        }
+
+        .lanes {
+
+
+            display: flex;
+            flex-wrap: wrap;
+            /* border: 1px solid white; */
+        }
+
+        .bl {
+            background-color: skyblue;
+            border: none;
+        }
+
+        .wht {
+            background-color: white;
+            border: none;
+        }
+
+        .output {
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="movie">
+            <span>Pick a movie:</span>
+            <select name="" id="films">
+                <option value="$20">Spiderman:No Way Home ($20)</option>
+                <option value="$35">Goodfellas ($35)</option>
+                <option value="$25">Taxi Driver ($25)</option>
+                <option value="$30">El Camino ($30)</option>
+
+            </select>
+        </div>
+        <div class="keys">
+            <div class="opt">
+                <div class="set"></div>
+                <p>N/A</p>
+            </div>
+            <div class="opt">
+                <div class="set bl"></div>
+                <p>Selected</p>
+            </div>
+            <div class="opt">
+                <div class="set wht"></div>
+                <p>Occupied</p>
+            </div>
+        </div>
+        <div class="screen"></div>
+        <div class="hall">
+            <div class="audience">
+                <div class="lanes">
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                </div>
+                <div class="lanes">
+                    <div class="slot wht"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot wht"></div>
+                    <div class="slot"></div>
+                </div>
+
+            </div>
+            <div class="audience st">
+                <div class="lanes">
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                </div>
+                <div class="lanes">
+                    <div class="slot wht"></div>
+                    <div class="slot"></div>
+                    <div class="slot wht"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                </div>
+                <div class="lanes">
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot wht"></div>
+                </div>
+                <div class="lanes">
+                    <div class="slot wht"></div>
+                    <div class="slot"></div>
+                    <div class="slot wht"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                </div>
+            </div>
+            <div class="audience">
+                <div class="lanes">
+                    <div class="slot wht"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot wht"></div>
+                    <div class="slot"></div>
+                </div>
+                <div class="lanes">
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                </div>
+            </div>
+        </div>
+        <div class="output"></div>
+    </div>
+
+
+    <script>
+        // let slot = document.querySelectorAll('.lanes .slot:not(.wht)');
+//     let films = document.querySelector('#films');
+//     let output = document.querySelector('.output');
+//     let tickets = [];
+//     let lts = 0;
+
+//     // Function to update the price based on movie selection and seats selected
+//     function updatePrice() {
+//         let selectedMoviePrice = 0;
+
+//         if (films.value === '$20') {
+//             selectedMoviePrice = 20;
+//         } else if (films.value === '$35') {
+//             selectedMoviePrice = 35;
+//         } else if (films.value === '$25') {
+//             selectedMoviePrice = 25;
+//         } else if (films.value === '$30') {
+//             selectedMoviePrice = 30;
+//         }
+
+//         let totalPrice = lts * selectedMoviePrice;
+
+//         let obj = { sets: lts, qeemat: totalPrice };
+//         tickets.push(obj);
+//         tickets.map((e)=>{
+
+//             output.innerHTML = `You have selected ${lts} seat(s) at the price of $${totalPrice}`;
+//             localStorage.setItem('cinema',JSON.stringify(tickets))
+//         })
+       
+
+       
+
+//         // Display the selected seats and total price
+//     }
+    
+//     function removeArrayFromLocalStorage() {
+//     localStorage.removeItem('cinema');
+// }
+
+//     // Update the price when the movie selection changes
+//     films.addEventListener('change', function () {
+//         lts = 0; // Reset the selected seats when the movie changes
+//         // Clear the selected seats by removing the 'wht' class
+//         slot.forEach((ele) => {
+//             ele.classList.remove('wht');
+//         });
+       
+//         updatePrice();
+       
+//     });
+
+//     slot.forEach((ele) => {
+//             ele.addEventListener('click', function () {
+//                 if (ele.classList.contains('wht')) {
+//                     lts--;
+//                 } else {
+//                     lts++;
+//                 }
+//                 ele.classList.toggle('wht');
+//                 removeArrayFromLocalStorage()
+//                 updatePrice();
+               
+//             });
+//         });
+
+       let slot=document.querySelectorAll('.lanes .slot:not(.wht)')
+       let output=document.querySelector('.output')
+       let film=document.querySelector('#films')
+       let tickets=[]
+       let lts=0
+       slot.forEach((ele)=>{
+        ele.addEventListener('click',function(){
+            if(!ele.classList.contains('wht')){
+               lts++
+            }
+            else{
+                lts--
+            }
+            ele.classList.toggle('wht')
+            removeitemlocalstorage()
+        updatePrice()
+
+        })
+           
+       })
+       function updatePrice(){
+        let price=0
+        if(film.value==='$20'){
+            price=20
+        }
+        else if(film.value==='$35'){
+            price=35
+        }
+        else if(film.value==='$25'){
+            price=25
+        }
+        else if(film.value==='$30'){
+            price=30
+        }
+        let totalPrice=lts*price
+        let obj={sets:lts,qeemat:totalPrice}
+        tickets.push(obj)
+        tickets.map((e)=>{
+            output.innerHTML=`You have selected ${e.sets} at the rate of $${e.qeemat}`
+        })
+        localStorage.setItem('cinema',JSON.stringify(tickets))
+        
+
+
+       }
+       function removeitemlocalstorage(){
+        localStorage.removeItem('cinema')
+       }
+       film.addEventListener('change',function(){
+           lts=0
+           slot.forEach((ele)=>{
+            ele.classList.remove('wht')
+           })
+           updatePrice()
+    
+       })
+
+
+    </script>
+</body>
+
+</html>
