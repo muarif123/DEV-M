@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Accordian</title>
+    <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            width: 100%;
+            background-color: wheat;
+        }
+
+        .parent {
+            height: auto;
+            width: 20%;
+            border: 1px solid;
+            border-radius: 5px;
+        }
+
+        .headerBar {
+            height: 60px;
+            width: 100%;
+            background-color: skyblue;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .dropDown {
+            height: 0;
+            width: 100%;
+            background-color: pink;
+            padding-top: 0px;
+            overflow: hidden;
+            max-height: 300px;
+            transition: all 0.3s linear;
+
+        }
+
+        .list {
+            margin-top: 10px;
+        }
+
+        .inc {
+            height: auto;
+        }
+
+        .bold-txt {
+            font-weight: bold;
+        }
+        .show{
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="parent">
+
+        <div class="headerBar">
+
+            <i class="fa-solid fa-rocket"></i>
+            <p>Dashboard</p>
+            <i class="fa-solid fa-angle-down"></i>
+        </div>
+        <!-- Sibling -->
+        <div class="dropDown">
+
+            <ul>
+                <li class="list">Page 1</li>
+                <li class="list">Page 2</li>
+                <li class="list">Page 3</li>
+                <li class="list">Page 4</li>
+                <li class="list">Page 5</li>
+            </ul>
+
+
+        </div>
+
+
+    </div>
+
+
+    <script>
+
+        let headerBar = document.querySelector('.headerBar')
+        let dropDown = document.querySelector('.dropDown')
+        headerBar.addEventListener('click', function () {
+
+            // dropDown.classList.add('.')
+            let icon = this.getElementsByTagName("i")[1]
+            console.log(icon);
+
+            let txt = this.getElementsByTagName("p")[0]
+            console.log(txt);
+
+            let drop1 = this.nextElementSibling
+
+            console.log(drop1);
+
+            if (icon.classList.contains("fa-angle-down")) {
+
+                icon.classList.remove("fa-angle-down")
+                icon.classList.add("fa-angle-up")
+
+                txt.classList.add("bold-txt")
+                drop1.classList.add("show")
+            }
+            else {
+                
+                icon.classList.add("fa-angle-down")
+                icon.classList.remove("fa-angle-up")
+                txt.classList.remove("bold-txt")
+                drop1.classList.remove("show")
+            }
+        })
+
+
+
+    </script>
+
+</body>
+
+</html>
